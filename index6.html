@@ -1,0 +1,1256 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Clasa Noastră - Liceu</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* Variabile și resetare */
+        :root {
+            --primary: rgba(255, 187, 0, 0.884);
+            --secondary: #fae900;
+            --accent: #ff6b6b;
+            --light: #f8f9fa;
+            --dark: #343a40;
+            --transition: all 0.3s ease;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            overflow-x: hidden;
+            background-color: var(--light);
+            color: var(--dark);
+        }
+
+        /* Animatie fundal */
+        .background-animation {
+            position: fixed;
+            width: 100vw;
+            height: 100vh;
+            top: 0;
+            left: 0;
+            z-index: -1;
+            overflow: hidden;
+        }
+
+        .background-animation li {
+            position: absolute;
+            display: block;
+            list-style: none;
+            width: 20px;
+            height: 20px;
+            background: rgba(79, 85, 200, 0.2);
+            animation: animate 25s linear infinite;
+            bottom: -150px;
+            border-radius: 50%;
+        }
+
+        .background-animation li:nth-child(1) {
+            left: 25%;
+            width: 80px;
+            height: 80px;
+            animation-delay: 0s;
+        }
+
+        .background-animation li:nth-child(2) {
+            left: 10%;
+            width: 20px;
+            height: 20px;
+            animation-delay: 2s;
+            animation-duration: 12s;
+        }
+
+        .background-animation li:nth-child(3) {
+            left: 70%;
+            width: 20px;
+            height: 20px;
+            animation-delay: 4s;
+        }
+
+        .background-animation li:nth-child(4) {
+            left: 40%;
+            width: 60px;
+            height: 60px;
+            animation-delay: 0s;
+            animation-duration: 18s;
+        }
+
+        .background-animation li:nth-child(5) {
+            left: 65%;
+            width: 20px;
+            height: 20px;
+            animation-delay: 0s;
+        }
+
+        @keyframes animate {
+            0% {
+                transform: translateY(0) rotate(0deg);
+                opacity: 1;
+                border-radius: 0;
+            }
+            100% {
+                transform: translateY(-1000px) rotate(720deg);
+                opacity: 0;
+                border-radius: 50%;
+            }
+        }
+
+        /* Header și navigație */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            padding: 20px 100px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 1000;
+            transition: var(--transition);
+            background: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        header.sticky {
+            padding: 15px 100px;
+            background: rgba(255, 255, 255, 0.95);
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+        }
+
+        .logo img {
+            width: 50px;
+            margin-right: 10px;
+        }
+
+        .logo-text {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--primary);
+            text-decoration: none;
+        }
+
+        .navigation {
+            display: flex;
+        }
+
+        .navigation li {
+            list-style: none;
+            margin: 0 10px;
+        }
+
+        .navigation li a {
+            color: var(--dark);
+            text-decoration: none;
+            font-weight: 500;
+            padding: 8px 15px;
+            border-radius: 5px;
+            transition: var(--transition);
+        }
+
+        .navigation li a:hover {
+            background: var(--primary);
+            color: white;
+        }
+
+        /* Hero Section */
+        .hero {
+            position: relative;
+            width: 100%;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: linear-gradient(45deg, var(--primary), var(--secondary));
+            overflow: hidden;
+        }
+
+        .hero-content {
+            text-align: center;
+            color: white;
+            z-index: 10;
+        }
+
+        .hero-content h1 {
+            font-size: 5rem;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.3);
+            animation: fadeInDown 1s ease;
+        }
+
+        .hero-content p {
+            font-size: 1.5rem;
+            margin-bottom: 30px;
+            animation: fadeInUp 1s ease;
+        }
+
+        .hero-btn {
+            display: inline-block;
+            padding: 15px 30px;
+            background: white;
+            color: var(--primary);
+            text-decoration: none;
+            font-weight: 600;
+            border-radius: 50px;
+            transition: var(--transition);
+            animation: fadeIn 1.5s ease;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .hero-btn:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        /* Despre noi */
+        .about {
+            padding: 100px 0;
+            background: white;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .section-title h2 {
+            font-size: 2.5rem;
+            color: var(--primary);
+            margin-bottom: 20px;
+            position: relative;
+            display: inline-block;
+        }
+
+        .section-title h2::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background: var(--accent);
+            border-radius: 2px;
+        }
+
+        .about-content {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .about-text {
+            flex: 1;
+            min-width: 300px;
+            padding: 20px;
+        }
+
+        .about-text p {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            margin-bottom: 20px;
+        }
+
+        .about-image {
+            flex: 1;
+            min-width: 300px;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .about-image img {
+            max-width: 100%;
+            height: 450px;
+            border-radius: 10px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            transition: var(--transition);
+        }
+
+        .about-image img:hover {
+            transform: translateY(-10px);
+        }
+
+        /* Elevi */
+        .students {
+            padding: 100px 0;
+            background: #f8f9fa;
+        }
+
+        .students-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .student-card {
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            transition: var(--transition);
+            position: relative;
+            cursor: pointer;
+        }
+
+        .student-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .student-image {
+            width: 100%;
+            height: 450px;
+            overflow: hidden;
+        }
+
+        .student-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: var(--transition);
+        }
+
+        .student-card:hover .student-image img {
+            transform: scale(1.1);
+        }
+
+        .student-info {
+            padding: 20px;
+            text-align: center;
+        }
+
+        .student-name {
+            font-size: 1.3rem;
+            margin-bottom: 10px;
+            color: var(--primary);
+        }
+
+        .student-quote {
+            font-style: italic;
+            color: #6c757d;
+            margin-bottom: 15px;
+        }
+
+        .music-indicator {
+            margin-top: 10px;
+            color: var(--primary);
+            font-size: 0.9rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .music-indicator i {
+            margin-right: 5px;
+        }
+
+        /* Proiecte */
+        .projects {
+            padding: 100px 0;
+            background: white;
+        }
+
+        /* Activități */
+        .activities {
+            padding: 100px 0;
+            background: #f8f9fa;
+        }
+
+        /* Imagini */
+        .gallery {
+            padding: 100px 0;
+            background: white;
+        }
+
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 15px;
+        }
+
+        .gallery-item {
+            position: relative;
+            overflow: hidden;
+            border-radius: 8px;
+            height: 250px;
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: var(--transition);
+        }
+
+        .gallery-item:hover img {
+            transform: scale(1.1);
+        }
+
+        .gallery-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(78, 84, 200, 0.8);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            opacity: 0;
+            transition: var(--transition);
+        }
+
+        .gallery-item:hover .gallery-overlay {
+            opacity: 1;
+        }
+
+        .gallery-overlay i {
+            color: white;
+            font-size: 2rem;
+        }
+
+        /* Footer */
+        footer {
+            background: var(--dark);
+            color: white;
+            padding: 60px 0 30px;
+        }
+
+        .footer-content {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+        }
+
+        .footer-section {
+            flex: 1;
+            min-width: 300px;
+            margin-bottom: 30px;
+            padding: 0 20px;
+        }
+
+        .footer-section h3 {
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+            position: relative;
+            padding-bottom: 10px;
+        }
+
+        .footer-section h3::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 50px;
+            height: 2px;
+            background: var(--accent);
+        }
+
+        .footer-links {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 10px;
+        }
+
+        .footer-links a {
+            color: #ddd;
+            text-decoration: none;
+            transition: var(--transition);
+        }
+
+        .footer-links a:hover {
+            color: white;
+            padding-left: 5px;
+        }
+
+        .social-icons {
+            display: flex;
+            margin-top: 20px;
+        }
+
+        .social-icons a {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 40px;
+            height: 40px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            margin-right: 10px;
+            color: white;
+            transition: var(--transition);
+        }
+
+        .social-icons a:hover {
+            background: var(--primary);
+            transform: translateY(-5px);
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            margin-top: 30px;
+        }
+
+        /* Buton scroll to top */
+        .scroll-to-top {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 50px;
+            height: 50px;
+            background: var(--primary);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            opacity: 0;
+            visibility: hidden;
+            transition: var(--transition);
+            z-index: 999;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .scroll-to-top.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .scroll-to-top:hover {
+            background: var(--secondary);
+            transform: translateY(-5px);
+        }
+
+        /* Animations */
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Responsive */
+        @media (max-width: 992px) {
+            header, header.sticky {
+                padding: 15px 50px;
+            }
+            
+            .navigation {
+                display: none;
+            }
+            
+            .navigation.active {
+                display: flex;
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100vh;
+                background: var(--primary);
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                z-index: 1000;
+            }
+            
+            .navigation.active li {
+                margin: 15px 0;
+            }
+            
+            .navigation.active li a {
+                color: white;
+                font-size: 1.5rem;
+            }
+            
+            .menu-toggle {
+                position: relative;
+                width: 40px;
+                height: 40px;
+                background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24"><path fill="currentColor" d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z"/></svg>') no-repeat center;
+                cursor: pointer;
+                z-index: 1001;
+            }
+            
+            .menu-toggle.active {
+                background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24"><path fill="currentColor" d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"/></svg>') no-repeat center;
+                position: fixed;
+                top: 20px;
+                right: 20px;
+            }
+            
+            .hero-content h1 {
+                font-size: 3rem;
+            }
+            
+            .hero-content p {
+                font-size: 1.2rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            header, header.sticky {
+                padding: 15px 20px;
+            }
+            
+            .hero-content h1 {
+                font-size: 2.5rem;
+            }
+            
+            .section-title h2 {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <ul class="background-animation">
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+    </ul>
+
+    <header>
+        <div class="logo">
+            <img src="image-removebg-preview (19).png" alt="">
+            <a href="#" class="logo-text">Clasa a 12-a L</a>
+        </div>
+        <div class="menu-toggle">
+            </div>
+        <ul class="navigation">
+            <li><a href="#acasa">Acasă</a></li>
+            <li><a href="#despre">Despre Noi</a></li>
+            <li><a href="#diriginte">Diriginte</a></li>
+            <li><a href="#elevi">Elevi</a></li>
+            <li><a href="#proiecte">Proiecte</a></li>
+            <li><a href="#activitati">Activități</a></li>
+            <li><a href="#imagini">Imagini</a></li>
+        </ul>
+    </header>
+
+    <section class="hero" id="acasa">
+        <div class="hero-content">
+            <h1>Clasa Noastră de Liceu</h1>
+            <p>O călătorie memorabilă plină de amintiri frumoase</p>
+            <a href="#imagini" class="hero-btn">Colaj Foto</a>
+        </div>
+    </section>
+
+    <section class="about" id="despre">
+        <div class="container">
+            <div class="section-title">
+                <h2>Despre Noi</h2>
+            </div>
+            <div class="about-content">
+                <div class="about-text">
+                    <p>Bun venit pe site-ul clasei noastre! Suntem o clasă unită și plină de energie, care împreună trăim cele mai frumoase amintiri din perioada liceului.</p>
+                    <p>Împreună am parcurs drumul spre maturizare, am învățat nu doar despre formule matematice și reguli gramaticale, ci și despre prietenie, respect și colaborare.</p>
+                    <p>Acest site este un colaj digital al momentelor noastre speciale, unde veți găsi poze, videoclipuri și amintiri din cei 4 ani de liceu.</p>
+                </div>
+                <div class="about-image">
+                    <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI0MDAiIGhlaWdodD0iMzAwIiB2aWV3Qm94PSIwIDAgNDAwIDMwMCI+PHJlY3Qgd2lkdGg9IjQwMCIgaGVpZ2h0PSIzMDAiIGZpbGw9IiNlMWUxZTEiLz48Y2lyY2xlIGN4PSIyMDAiIGN5PSIxNTAiIHI9IjgwIiBmaWxsPSIjY2NjIi8+PHBhdGggZD0iTTE2MCAxMjAgTDI0MCAxMjAgTDI0MCAxODAgTDE2MCAxODAgTDE2MCAxMjAiIGZpbGw9IiNhYWEiLz48Y2lyY2xlIGN4PSIxNzAiIGN5PSIxMzAiIHI9IjEwIiBmaWxsPSIjNzg3ODc4Ii8+PGNpcmNsZSBjeD0iMjMwIiBjeT0iMTMwIiByPSIxMCIgZmlsbD0iIzc4Nzg3OCIvPjxwYXRoIGQ9Ik0xNjAgMTgwIFEyMDAgMjAwIDI0MCAxODAiIHN0cm9rZT0iIzc4Nzg3OCIgc3Ryb2tlLXdpZHRoPSIyIiBmaWxsPSJub25lIi8+PC9zdmc+" alt="Clasa noastră">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="about" id="diriginte">
+        <div class="container">
+            <div class="section-title">
+                <h2>Doamna Dirigintă</h2>
+            </div>
+            <div class="about-content">
+                <div class="about-image">
+                    <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIzMDAiIGhlaWdodD0iMzAwIiB2aWV3Qm94PSIwIDAgMzAwIDMwMCI+PHJlY3Qgd2lkdGg9IjMwMCIgaGVpZ2h0PSIzMDAiIGZpbGw9IiNlMWUxZTEiLz48Y2lyY2xlIGN4PSIxNTAiIGN5PSIxMDAiIHI9IjUwIiBmaWxsPSIjY2NjIi8+PHBhdGggZD0iTTEwMCAxNzAgTDIwMCAxNzAgTDIwMCAyMjAgTDEwMCAyMjAgTDEwMCAxNzAiIGZpbGw9IiM0ZTU0YzgiLz48Y2lyY2xlIGN4PSIxMjAiIGN5PSIxNTAiIHI9IjgiIGZpbGw9IiM3ODc4NzgiLz48Y2lyY2xlIGN4PSIxODAiIGN5PSIxNTAiIHI9IjgiIGZpbGw9IiM3ODc4NzgiLz48cGF0aCBkPSJNMTIwIDE5MCBRMTUwIDIwMCAxODAgMTkwIiBzdHJva2U9IiM3ODc4NzgiIHN0cm9rZS13aWR0aD0iMiIgZmlsbD0ibm9uZSIvPjwvc3ZnPg==" alt="Diriginte">
+                </div>
+                <div class="about-text">
+                    <h3>Prof.Vlonga Luminița</h3><br>
+                    <p>Dirigintele nostru drag este un ghid și un sprijin neprețuit în această călătorie liceală. Cu răbdare și înțelegere, ne îndrumă și ne susține în toate demersurile noastre.</p>
+                    <p>El nu este doar un profesor pentru noi, ci și un mentor și un prieten pe care îl putem căuta oricând avem nevoie de un sfat sau de o vorbă bună.</p>
+                    <p>"Educația este cea mai puternică armă pe care o poți folosi pentru a schimba lumea." - Nelson Mandela</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="students" id="elevi">
+        <div class="container">
+            <div class="section-title">
+                <h2>Elevii Noștri</h2>
+            </div>
+            <div class="students-grid">
+                 <div class="student-card" data-audio="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-2.mp3">
+                    <div class="student-image">
+                        <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIzMDAiIGhlaWdodD0iMzAwIiB2aWV3Qm94PSIwIDAgMzAwIDMwMCI+PHJlY3Qgd2lkdGg9IjMwMCIgaGVpZ2h0PSIzMDAiIGZpbGw9IiNlMWUxZTEiLz48Y2lyY2xlIGN4PSIxNTAiIGN5PSIxMDAiIHI9IjUwIiBmaWxsPSIjY2NjIi8+PHBhdGggZD0iTTEwMCAxNzAgTDIwMCAxNzAgTDIwMCAyMjAgTDEwMCAyMjAgTDEwMCAxNzAiIGZpbGw9IiNhY2MzZTAiLz48Y2lyY2xlIGN4PSIxMjAiIGN5PSIxNTAiIHI9IjgiIGZpbGw9IiM3ODc4NzgiLz48Y2lyY2xlIGN4PSIxODAiIGN5PSIxNTAiIHI9IjgiIGZpbGw9IiM3ODc4NzgiLz48cGF0aCBkPSJNMTIwIDE5MCBRMTUwIDIwMCAxODAgMTkwIiBzdHJva2U9IiM3ODc4NzgiIHN0cm9rZS13aWR0aD0iMiIgZmlsbD0ibm9uZSIvPjwvc3ZnPg==" alt="Elev 2">
+                    </div>
+                    <div class="student-info">
+                        <h3 class="student-name">Abuzătoaei Radu</h3>
+                        <p class="student-quote">"Success is not the key to happiness. Happiness is the key to success."</p>
+                        <div class="music-indicator">
+                            <i class="fas fa-music"></i>
+                            <span class="music-text">Apasă pentru a asculta melodia</span>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="student-card" data-audio="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-2.mp3">
+                    <div class="student-image">
+                        <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIzMDAiIGhlaWdodD0iMzAwIiB2aWV3Qm94PSIwIDAgMzAwIDMwMCI+PHJlY3Qgd2lkdGg9IjMwMCIgaGVpZ2h0PSIzMDAiIGZpbGw9IiNlMWUxZTEiLz48Y2lyY2xlIGN4PSIxNTAiIGN5PSIxMDAiIHI9IjUwIiBmaWxsPSIjY2NjIi8+PHBhdGggZD0iTTEwMCAxNzAgTDIwMCAxNzAgTDIwMCAyMjAgTDEwMCAyMjAgTDEwMCAxNzAiIGZpbGw9IiNhY2MzZTAiLz48Y2lyY2xlIGN4PSIxMjAiIGN5PSIxNTAiIHI9IjgiIGZpbGw9IiM3ODc4NzgiLz48Y2lyY2xlIGN4PSIxODAiIGN5PSIxNTAiIHI9IjgiIGZpbGw9IiM3ODc4NzgiLz48cGF0aCBkPSJNMTIwIDE5MCBRMTUwIDIwMCAxODAgMTkwIiBzdHJva2U9IiM3ODc4NzgiIHN0cm9rZS13aWR0aD0iMiIgZmlsbD0ibm9uZSIvPjwvc3ZnPg==" alt="Elev 2">
+                    </div>
+                    <div class="student-info">
+                        <h3 class="student-name">Abuzătoaei Diana</h3>
+                        <p class="student-quote">"Success is not the key to happiness. Happiness is the key to success."</p>
+                        <div class="music-indicator">
+                            <i class="fas fa-music"></i>
+                            <span class="music-text">Apasă pentru a asculta melodia</span>
+                        </div>
+                    </div>
+                </div>
+
+
+
+
+
+                 <div class="student-card" data-audio="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-2.mp3">
+                    <div class="student-image">
+                        <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIzMDAiIGhlaWdodD0iMzAwIiB2aWV3Qm94PSIwIDAgMzAwIDMwMCI+PHJlY3Qgd2lkdGg9IjMwMCIgaGVpZ2h0PSIzMDAiIGZpbGw9IiNlMWUxZTEiLz48Y2lyY2xlIGN4PSIxNTAiIGN5PSIxMDAiIHI9IjUwIiBmaWxsPSIjY2NjIi8+PHBhdGggZD0iTTEwMCAxNzAgTDIwMCAxNzAgTDIwMCAyMjAgTDEwMCAyMjAgTDEwMCAxNzAiIGZpbGw9IiNhY2MzZTAiLz48Y2lyY2xlIGN4PSIxMjAiIGN5PSIxNTAiIHI9IjgiIGZpbGw9IiM3ODc4NzgiLz48Y2lyY2xlIGN4PSIxODAiIGN5PSIxNTAiIHI9IjgiIGZpbGw9IiM3ODc4NzgiLz48cGF0aCBkPSJNMTIwIDE5MCBRMTUwIDIwMCAxODAgMTkwIiBzdHJva2U9IiM3ODc4NzgiIHN0cm9rZS13aWR0aD0iMiIgZmlsbD0ibm9uZSIvPjwvc3ZnPg==" alt="Elev 2">
+                    </div>
+                    <div class="student-info">
+                        <h3 class="student-name">Andone Raul</h3>
+                        <p class="student-quote">"Success is not the key to happiness. Happiness is the key to success."</p>
+                        <div class="music-indicator">
+                            <i class="fas fa-music"></i>
+                            <span class="music-text">Apasă pentru a asculta melodia</span>
+                        </div>
+                    </div>
+                </div>
+                 <div class="student-card" data-audio="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-2.mp3">
+                    <div class="student-image">
+                        <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIzMDAiIGhlaWdodD0iMzAwIiB2aWV3Qm94PSIwIDAgMzAwIDMwMCI+PHJlY3Qgd2lkdGg9IjMwMCIgaGVpZ2h0PSIzMDAiIGZpbGw9IiNlMWUxZTEiLz48Y2lyY2xlIGN4PSIxNTAiIGN5PSIxMDAiIHI9IjUwIiBmaWxsPSIjY2NjIi8+PHBhdGggZD0iTTEwMCAxNzAgTDIwMCAxNzAgTDIwMCAyMjAgTDEwMCAyMjAgTDEwMCAxNzAiIGZpbGw9IiNhY2MzZTAiLz48Y2lyY2xlIGN4PSIxMjAiIGN5PSIxNTAiIHI9IjgiIGZpbGw9IiM3ODc4NzgiLz48Y2lyY2xlIGN4PSIxODAiIGN5PSIxNTAiIHI9IjgiIGZpbGw9IiM3ODc4NzgiLz48cGF0aCBkPSJNMTIwIDE5MCBRMTUwIDIwMCAxODAgMTkwIiBzdHJva2U9IiM3ODc4NzgiIHN0cm9rZS13aWR0aD0iMiIgZmlsbD0ibm9uZSIvPjwvc3ZnPg==" alt="Elev 2">
+                    </div>
+                    <div class="student-info">
+                        <h3 class="student-name">Baciu Daniel </h3>
+                        <p class="student-quote">"Success is not the key to happiness. Happiness is the key to success."</p>
+                        <div class="music-indicator">
+                            <i class="fas fa-music"></i>
+                            <span class="music-text">Apasă pentru a asculta melodia</span>
+                        </div>
+                    </div>
+                </div>
+                 <div class="student-card" data-audio="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-2.mp3">
+                    <div class="student-image">
+                        <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIzMDAiIGhlaWdodD0iMzAwIiB2aWV3Qm94PSIwIDAgMzAwIDMwMCI+PHJlY3Qgd2lkdGg9IjMwMCIgaGVpZ2h0PSIzMDAiIGZpbGw9IiNlMWUxZTEiLz48Y2lyY2xlIGN4PSIxNTAiIGN5PSIxMDAiIHI9IjUwIiBmaWxsPSIjY2NjIi8+PHBhdGggZD0iTTEwMCAxNzAgTDIwMCAxNzAgTDIwMCAyMjAgTDEwMCAyMjAgTDEwMCAxNzAiIGZpbGw9IiNhY2MzZTAiLz48Y2lyY2xlIGN4PSIxMjAiIGN5PSIxNTAiIHI9IjgiIGZpbGw9IiM3ODc4NzgiLz48Y2lyY2xlIGN4PSIxODAiIGN5PSIxNTAiIHI9IjgiIGZpbGw9IiM3ODc4NzgiLz48cGF0aCBkPSJNMTIwIDE5MCBRMTUwIDIwMCAxODAgMTkwIiBzdHJva2U9IiM3ODc4NzgiIHN0cm9rZS13aWR0aD0iMiIgZmlsbD0ibm9uZSIvPjwvc3ZnPg==" alt="Elev 2">
+                    </div>
+                    <div class="student-info">
+                        <h3 class="student-name">Bulai Georgiana</h3>
+                        <p class="student-quote">"Success is not the key to happiness. Happiness is the key to success."</p>
+                        <div class="music-indicator">
+                            <i class="fas fa-music"></i>
+                            <span class="music-text">Apasă pentru a asculta melodia</span>
+                        </div>
+                    </div>
+                </div>
+                 <div class="student-card" data-audio="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-2.mp3">
+                    <div class="student-image">
+                        <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIzMDAiIGhlaWdodD0iMzAwIiB2aWV3Qm94PSIwIDAgMzAwIDMwMCI+PHJlY3Qgd2lkdGg9IjMwMCIgaGVpZ2h0PSIzMDAiIGZpbGw9IiNlMWUxZTEiLz48Y2lyY2xlIGN4PSIxNTAiIGN5PSIxMDAiIHI9IjUwIiBmaWxsPSIjY2NjIi8+PHBhdGggZD0iTTEwMCAxNzAgTDIwMCAxNzAgTDIwMCAyMjAgTDEwMCAyMjAgTDEwMCAxNzAiIGZpbGw9IiNhY2MzZTAiLz48Y2lyY2xlIGN4PSIxMjAiIGN5PSIxNTAiIHI9IjgiIGZpbGw9IiM3ODc4NzgiLz48Y2lyY2xlIGN4PSIxODAiIGN5PSIxNTAiIHI9IjgiIGZpbGw9IiM3ODc4NzgiLz48cGF0aCBkPSJNMTIwIDE5MCBRMTUwIDIwMCAxODAgMTkwIiBzdHJva2U9IiM3ODc4NzgiIHN0cm9rZS13aWR0aD0iMiIgZmlsbD0ibm9uZSIvPjwvc3ZnPg==" alt="Elev 2">
+                    </div>
+                    <div class="student-info">
+                        <h3 class="student-name">Buraga Iulia</h3>
+                        <p class="student-quote">"Success is not the key to happiness. Happiness is the key to success."</p>
+                        <div class="music-indicator">
+                            <i class="fas fa-music"></i>
+                            <span class="music-text">Apasă pentru a asculta melodia</span>
+                        </div>
+                    </div>
+                </div>
+
+
+
+                             <div class="student-card" data-audio="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-2.mp3">
+                    <div class="student-image">
+                        <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIzMDAiIGhlaWdodD0iMzAwIiB2aWV3Qm94PSIwIDAgMzAwIDMwMCI+PHJlY3Qgd2lkdGg9IjMwMCIgaGVpZ2h0PSIzMDAiIGZpbGw9IiNlMWUxZTEiLz48Y2lyY2xlIGN4PSIxNTAiIGN5PSIxMDAiIHI9IjUwIiBmaWxsPSIjY2NjIi8+PHBhdGggZD0iTTEwMCAxNzAgTDIwMCAxNzAgTDIwMCAyMjAgTDEwMCAyMjAgTDEwMCAxNzAiIGZpbGw9IiNhY2MzZTAiLz48Y2lyY2xlIGN4PSIxMjAiIGN5PSIxNTAiIHI9IjgiIGZpbGw9IiM3ODc4NzgiLz48Y2lyY2xlIGN4PSIxODAiIGN5PSIxNTAiIHI9IjgiIGZpbGw9IiM3ODc4NzgiLz48cGF0aCBkPSJNMTIwIDE5MCBRMTUwIDIwMCAxODAgMTkwIiBzdHJva2U9IiM3ODc4NzgiIHN0cm9rZS13aWR0aD0iMiIgZmlsbD0ibm9uZSIvPjwvc3ZnPg==" alt="Elev 2">
+                    </div>
+                    <div class="student-info">
+                        <h3 class="student-name">Burdiman Andrei</h3>
+                        <p class="student-quote">"Success is not the key to happiness. Happiness is the key to success."</p>
+                        <div class="music-indicator">
+                            <i class="fas fa-music"></i>
+                            <span class="music-text">Apasă pentru a asculta melodia</span>
+                        </div>
+                    </div>
+                </div>
+                 <div class="student-card" data-audio="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-2.mp3">
+                    <div class="student-image">
+                        <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIzMDAiIGhlaWdodD0iMzAwIiB2aWV3Qm94PSIwIDAgMzAwIDMwMCI+PHJlY3Qgd2lkdGg9IjMwMCIgaGVpZ2h0PSIzMDAiIGZpbGw9IiNlMWUxZTEiLz48Y2lyY2xlIGN4PSIxNTAiIGN5PSIxMDAiIHI9IjUwIiBmaWxsPSIjY2NjIi8+PHBhdGggZD0iTTEwMCAxNzAgTDIwMCAxNzAgTDIwMCAyMjAgTDEwMCAyMjAgTDEwMCAxNzAiIGZpbGw9IiNhY2MzZTAiLz48Y2lyY2xlIGN4PSIxMjAiIGN5PSIxNTAiIHI9IjgiIGZpbGw9IiM3ODc4NzgiLz48Y2lyY2xlIGN4PSIxODAiIGN5PSIxNTAiIHI9IjgiIGZpbGw9IiM3ODc4NzgiLz48cGF0aCBkPSJNMTIwIDE5MCBRMTUwIDIwMCAxODAgMTkwIiBzdHJva2U9IiM3ODc4NzgiIHN0cm9rZS13aWR0aD0iMiIgZmlsbD0ibm9uZSIvPjwvc3ZnPg==" alt="Elev 2">
+                    </div>
+                    <div class="student-info">
+                        <h3 class="student-name">Burghelea David</h3>
+                        <p class="student-quote">"Success is not the key to happiness. Happiness is the key to success."</p>
+                        <div class="music-indicator">
+                            <i class="fas fa-music"></i>
+                            <span class="music-text">Apasă pentru a asculta melodia</span>
+                        </div>
+                    </div>
+                </div> 
+
+
+                 <div class="student-card" data-audio="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-2.mp3">
+                    <div class="student-image">
+                        <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIzMDAiIGhlaWdodD0iMzAwIiB2aWV3Qm94PSIwIDAgMzAwIDMwMCI+PHJlY3Qgd2lkdGg9IjMwMCIgaGVpZ2h0PSIzMDAiIGZpbGw9IiNlMWUxZTEiLz48Y2lyY2xlIGN4PSIxNTAiIGN5PSIxMDAiIHI9IjUwIiBmaWxsPSIjY2NjIi8+PHBhdGggZD0iTTEwMCAxNzAgTDIwMCAxNzAgTDIwMCAyMjAgTDEwMCAyMjAgTDEwMCAxNzAiIGZpbGw9IiNhY2MzZTAiLz48Y2lyY2xlIGN4PSIxMjAiIGN5PSIxNTAiIHI9IjgiIGZpbGw9IiM3ODc4NzgiLz48Y2lyY2xlIGN4PSIxODAiIGN5PSIxNTAiIHI9IjgiIGZpbGw9IiM3ODc4NzgiLz48cGF0aCBkPSJNMTIwIDE5MCBRMTUwIDIwMCAxODAgMTkwIiBzdHJva2U9IiM3ODc4NzgiIHN0cm9rZS13aWR0aD0iMiIgZmlsbD0ibm9uZSIvPjwvc3ZnPg==" alt="Elev 2">
+                    </div>
+                    <div class="student-info">
+                        <h3 class="student-name">Burghelea David</h3>
+                        <p class="student-quote">"Success is not the key to happiness. Happiness is the key to success."</p>
+                        <div class="music-indicator">
+                            <i class="fas fa-music"></i>
+                            <span class="music-text">Apasă pentru a asculta melodia</span>
+                        </div>
+                    </div>
+                </div>
+
+                
+                 <div class="student-card" data-audio="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-2.mp3">
+                    <div class="student-image">
+                        <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIzMDAiIGhlaWdodD0iMzAwIiB2aWV3Qm94PSIwIDAgMzAwIDMwMCI+PHJlY3Qgd2lkdGg9IjMwMCIgaGVpZ2h0PSIzMDAiIGZpbGw9IiNlMWUxZTEiLz48Y2lyY2xlIGN4PSIxNTAiIGN5PSIxMDAiIHI9IjUwIiBmaWxsPSIjY2NjIi8+PHBhdGggZD0iTTEwMCAxNzAgTDIwMCAxNzAgTDIwMCAyMjAgTDEwMCAyMjAgTDEwMCAxNzAiIGZpbGw9IiNhY2MzZTAiLz48Y2lyY2xlIGN4PSIxMjAiIGN5PSIxNTAiIHI9IjgiIGZpbGw9IiM3ODc4NzgiLz48Y2lyY2xlIGN4PSIxODAiIGN5PSIxNTAiIHI9IjgiIGZpbGw9IiM3ODc4NzgiLz48cGF0aCBkPSJNMTIwIDE5MCBRMTUwIDIwMCAxODAgMTkwIiBzdHJva2U9IiM3ODc4NzgiIHN0cm9rZS13aWR0aD0iMiIgZmlsbD0ibm9uZSIvPjwvc3ZnPg==" alt="Elev 2">
+                    </div>
+                    <div class="student-info">
+                        <h3 class="student-name">Burghelea Sebastian</h3>
+                        <p class="student-quote">"Success is not the key to happiness. Happiness is the key to success."</p>
+                        <div class="music-indicator">
+                            <i class="fas fa-music"></i>
+                            <span class="music-text">Apasă pentru a asculta melodia</span>
+                        </div>
+                    </div>
+                </div>
+                 <div class="student-card" data-audio="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-2.mp3">
+                    <div class="student-image">
+                        <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIzMDAiIGhlaWdodD0iMzAwIiB2aWV3Qm94PSIwIDAgMzAwIDMwMCI+PHJlY3Qgd2lkdGg9IjMwMCIgaGVpZ2h0PSIzMDAiIGZpbGw9IiNlMWUxZTEiLz48Y2lyY2xlIGN4PSIxNTAiIGN5PSIxMDAiIHI9IjUwIiBmaWxsPSIjY2NjIi8+PHBhdGggZD0iTTEwMCAxNzAgTDIwMCAxNzAgTDIwMCAyMjAgTDEwMCAyMjAgTDEwMCAxNzAiIGZpbGw9IiNhY2MzZTAiLz48Y2lyY2xlIGN4PSIxMjAiIGN5PSIxNTAiIHI9IjgiIGZpbGw9IiM3ODc4NzgiLz48Y2lyY2xlIGN4PSIxODAiIGN5PSIxNTAiIHI9IjgiIGZpbGw9IiM3ODc4NzgiLz48cGF0aCBkPSJNMTIwIDE5MCBRMTUwIDIwMCAxODAgMTkwIiBzdHJva2U9IiM3ODc4NzgiIHN0cm9rZS13aWR0aD0iMiIgZmlsbD0ibm9uZSIvPjwvc3ZnPg==" alt="Elev 2">
+                    </div>
+                    <div class="student-info">
+                        <h3 class="student-name">Ciolac Maria</h3>
+                        <p class="student-quote">"Success is not the key to happiness. Happiness is the key to success."</p>
+                        <div class="music-indicator">
+                            <i class="fas fa-music"></i>
+                            <span class="music-text">Apasă pentru a asculta melodia</span>
+                        </div>
+                    </div>
+                </div>
+                 <div class="student-card" data-audio="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-2.mp3">
+                    <div class="student-image">
+                        <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIzMDAiIGhlaWdodD0iMzAwIiB2aWV3Qm94PSIwIDAgMzAwIDMwMCI+PHJlY3Qgd2lkdGg9IjMwMCIgaGVpZ2h0PSIzMDAiIGZpbGw9IiNlMWUxZTEiLz48Y2lyY2xlIGN4PSIxNTAiIGN5PSIxMDAiIHI9IjUwIiBmaWxsPSIjY2NjIi8+PHBhdGggZD0iTTEwMCAxNzAgTDIwMCAxNzAgTDIwMCAyMjAgTDEwMCAyMjAgTDEwMCAxNzAiIGZpbGw9IiNhY2MzZTAiLz48Y2lyY2xlIGN4PSIxMjAiIGN5PSIxNTAiIHI9IjgiIGZpbGw9IiM3ODc4NzgiLz48Y2lyY2xlIGN4PSIxODAiIGN5PSIxNTAiIHI9IjgiIGZpbGw9IiM3ODc4NzgiLz48cGF0aCBkPSJNMTIwIDE5MCBRMTUwIDIwMCAxODAgMTkwIiBzdHJva2U9IiM3ODc4NzgiIHN0cm9rZS13aWR0aD0iMiIgZmlsbD0ibm9uZSIvPjwvc3ZnPg==" alt="Elev 2">
+                    </div>
+                    <div class="student-info">
+                        <h3 class="student-name">Grigoriu Alexandru </h3>
+                        <p class="student-quote">"Success is not the key to happiness. Happiness is the key to success."</p>
+                        <div class="music-indicator">
+                            <i class="fas fa-music"></i>
+                            <span class="music-text">Apasă pentru a asculta melodia</span>
+                        </div>
+                    </div>
+                </div>
+                 <div class="student-card" data-audio="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-2.mp3">
+                    <div class="student-image">
+                        <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIzMDAiIGhlaWdodD0iMzAwIiB2aWV3Qm94PSIwIDAgMzAwIDMwMCI+PHJlY3Qgd2lkdGg9IjMwMCIgaGVpZ2h0PSIzMDAiIGZpbGw9IiNlMWUxZTEiLz48Y2lyY2xlIGN4PSIxNTAiIGN5PSIxMDAiIHI9IjUwIiBmaWxsPSIjY2NjIi8+PHBhdGggZD0iTTEwMCAxNzAgTDIwMCAxNzAgTDIwMCAyMjAgTDEwMCAyMjAgTDEwMCAxNzAiIGZpbGw9IiNhY2MzZTAiLz48Y2lyY2xlIGN4PSIxMjAiIGN5PSIxNTAiIHI9IjgiIGZpbGw9IiM3ODc4NzgiLz48Y2lyY2xlIGN4PSIxODAiIGN5PSIxNTAiIHI9IjgiIGZpbGw9IiM3ODc4NzgiLz48cGF0aCBkPSJNMTIwIDE5MCBRMTUwIDIwMCAxODAgMTkwIiBzdHJva2U9IiM3ODc4NzgiIHN0cm9rZS13aWR0aD0iMiIgZmlsbD0ibm9uZSIvPjwvc3ZnPg==" alt="Elev 2">
+                    </div>
+                    <div class="student-info">
+                        <h3 class="student-name">Hriscu Teodoru</h3>
+                        <p class="student-quote">"Success is not the key to happiness. Happiness is the key to success."</p>
+                        <div class="music-indicator">
+                            <i class="fas fa-music"></i>
+                            <span class="music-text">Apasă pentru a asculta melodia</span>
+                        </div>
+                    </div>
+                </div>
+
+
+      <div class="student-card" data-audio="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-2.mp3">
+                    <div class="student-image">
+                        <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIzMDAiIGhlaWdodD0iMzAwIiB2aWV3Qm94PSIwIDAgMzAwIDMwMCI+PHJlY3Qgd2lkdGg9IjMwMCIgaGVpZ2h0PSIzMDAiIGZpbGw9IiNlMWUxZTEiLz48Y2lyY2xlIGN4PSIxNTAiIGN5PSIxMDAiIHI9IjUwIiBmaWxsPSIjY2NjIi8+PHBhdGggZD0iTTEwMCAxNzAgTDIwMCAxNzAgTDIwMCAyMjAgTDEwMCAyMjAgTDEwMCAxNzAiIGZpbGw9IiNhY2MzZTAiLz48Y2lyY2xlIGN4PSIxMjAiIGN5PSIxNTAiIHI9IjgiIGZpbGw9IiM3ODc4NzgiLz48Y2lyY2xlIGN4PSIxODAiIGN5PSIxNTAiIHI9IjgiIGZpbGw9IiM3ODc4NzgiLz48cGF0aCBkPSJNMTIwIDE5MCBRMTUwIDIwMCAxODAgMTkwIiBzdHJva2U9IiM3ODc4NzgiIHN0cm9rZS13aWR0aD0iMiIgZmlsbD0ibm9uZSIvPjwvc3ZnPg==" alt="Elev 2">
+                    </div>
+                    <div class="student-info">
+                        <h3 class="student-name">Ilie Alexandra </h3>
+                        <p class="student-quote">"Success is not the key to happiness. Happiness is the key to success."</p>
+                        <div class="music-indicator">
+                            <i class="fas fa-music"></i>
+                            <span class="music-text">Apasă pentru a asculta melodia</span>
+                        </div>
+                    </div>
+                </div>
+                      <div class="student-card" data-audio="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-2.mp3">
+                    <div class="student-image">
+                        <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIzMDAiIGhlaWdodD0iMzAwIiB2aWV3Qm94PSIwIDAgMzAwIDMwMCI+PHJlY3Qgd2lkdGg9IjMwMCIgaGVpZ2h0PSIzMDAiIGZpbGw9IiNlMWUxZTEiLz48Y2lyY2xlIGN4PSIxNTAiIGN5PSIxMDAiIHI9IjUwIiBmaWxsPSIjY2NjIi8+PHBhdGggZD0iTTEwMCAxNzAgTDIwMCAxNzAgTDIwMCAyMjAgTDEwMCAyMjAgTDEwMCAxNzAiIGZpbGw9IiNhY2MzZTAiLz48Y2lyY2xlIGN4PSIxMjAiIGN5PSIxNTAiIHI9IjgiIGZpbGw9IiM3ODc4NzgiLz48Y2lyY2xlIGN4PSIxODAiIGN5PSIxNTAiIHI9IjgiIGZpbGw9IiM3ODc4NzgiLz48cGF0aCBkPSJNMTIwIDE5MCBRMTUwIDIwMCAxODAgMTkwIiBzdHJva2U9IiM3ODc4NzgiIHN0cm9rZS13aWR0aD0iMiIgZmlsbD0ibm9uZSIvPjwvc3ZnPg==" alt="Elev 2">
+                    </div>
+                    <div class="student-info">
+                        <h3 class="student-name">Lungu Erica </h3>
+                        <p class="student-quote">"Success is not the key to happiness. Happiness is the key to success."</p>
+                        <div class="music-indicator">
+                            <i class="fas fa-music"></i>
+                            <span class="music-text">Apasă pentru a asculta melodia</span>
+                        </div>
+                    </div>
+                </div>
+
+      <div class="student-card" data-audio="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-2.mp3">
+                    <div class="student-image">
+                        <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIzMDAiIGhlaWdodD0iMzAwIiB2aWV3Qm94PSIwIDAgMzAwIDMwMCI+PHJlY3Qgd2lkdGg9IjMwMCIgaGVpZ2h0PSIzMDAiIGZpbGw9IiNlMWUxZTEiLz48Y2lyY2xlIGN4PSIxNTAiIGN5PSIxMDAiIHI9IjUwIiBmaWxsPSIjY2NjIi8+PHBhdGggZD0iTTEwMCAxNzAgTDIwMCAxNzAgTDIwMCAyMjAgTDEwMCAyMjAgTDEwMCAxNzAiIGZpbGw9IiNhY2MzZTAiLz48Y2lyY2xlIGN4PSIxMjAiIGN5PSIxNTAiIHI9IjgiIGZpbGw9IiM3ODc4NzgiLz48Y2lyY2xlIGN4PSIxODAiIGN5PSIxNTAiIHI9IjgiIGZpbGw9IiM3ODc4NzgiLz48cGF0aCBkPSJNMTIwIDE5MCBRMTUwIDIwMCAxODAgMTkwIiBzdHJva2U9IiM3ODc4NzgiIHN0cm9rZS13aWR0aD0iMiIgZmlsbD0ibm9uZSIvPjwvc3ZnPg==" alt="Elev 2">
+                    </div>
+                    <div class="student-info">
+                        <h3 class="student-name">Lupu Florin  </h3>
+                        <p class="student-quote">"Success is not the key to happiness. Happiness is the key to success."</p>
+                        <div class="music-indicator">
+                            <i class="fas fa-music"></i>
+                            <span class="music-text">Apasă pentru a asculta melodia</span>
+                        </div>
+                    </div>
+                </div>
+
+
+
+
+      <div class="student-card" data-audio="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-2.mp3">
+                    <div class="student-image">
+                        <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIzMDAiIGhlaWdodD0iMzAwIiB2aWV3Qm94PSIwIDAgMzAwIDMwMCI+PHJlY3Qgd2lkdGg9IjMwMCIgaGVpZ2h0PSIzMDAiIGZpbGw9IiNlMWUxZTEiLz48Y2lyY2xlIGN4PSIxNTAiIGN5PSIxMDAiIHI9IjUwIiBmaWxsPSIjY2NjIi8+PHBhdGggZD0iTTEwMCAxNzAgTDIwMCAxNzAgTDIwMCAyMjAgTDEwMCAyMjAgTDEwMCAxNzAiIGZpbGw9IiNhY2MzZTAiLz48Y2lyY2xlIGN4PSIxMjAiIGN5PSIxNTAiIHI9IjgiIGZpbGw9IiM3ODc4NzgiLz48Y2lyY2xlIGN4PSIxODAiIGN5PSIxNTAiIHI9IjgiIGZpbGw9IiM3ODc4NzgiLz48cGF0aCBkPSJNMTIwIDE5MCBRMTUwIDIwMCAxODAgMTkwIiBzdHJva2U9IiM3ODc4NzgiIHN0cm9rZS13aWR0aD0iMiIgZmlsbD0ibm9uZSIvPjwvc3ZnPg==" alt="Elev 2">
+                    </div>
+                    <div class="student-info">
+                        <h3 class="student-name">Marcu Alexandru </h3>
+                        <p class="student-quote">"Success is not the key to happiness. Happiness is the key to success."</p>
+                        <div class="music-indicator">
+                            <i class="fas fa-music"></i>
+                            <span class="music-text">Apasă pentru a asculta melodia</span>
+                        </div>
+                    </div>
+                </div>
+
+
+
+      <div class="student-card" data-audio="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-2.mp3">
+                    <div class="student-image">
+                        <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIzMDAiIGhlaWdodD0iMzAwIiB2aWV3Qm94PSIwIDAgMzAwIDMwMCI+PHJlY3Qgd2lkdGg9IjMwMCIgaGVpZ2h0PSIzMDAiIGZpbGw9IiNlMWUxZTEiLz48Y2lyY2xlIGN4PSIxNTAiIGN5PSIxMDAiIHI9IjUwIiBmaWxsPSIjY2NjIi8+PHBhdGggZD0iTTEwMCAxNzAgTDIwMCAxNzAgTDIwMCAyMjAgTDEwMCAyMjAgTDEwMCAxNzAiIGZpbGw9IiNhY2MzZTAiLz48Y2lyY2xlIGN4PSIxMjAiIGN5PSIxNTAiIHI9IjgiIGZpbGw9IiM3ODc4NzgiLz48Y2lyY2xlIGN4PSIxODAiIGN5PSIxNTAiIHI9IjgiIGZpbGw9IiM3ODc4NzgiLz48cGF0aCBkPSJNMTIwIDE5MCBRMTUwIDIwMCAxODAgMTkwIiBzdHJva2U9IiM3ODc4NzgiIHN0cm9rZS13aWR0aD0iMiIgZmlsbD0ibm9uZSIvPjwvc3ZnPg==" alt="Elev 2">
+                    </div>
+                    <div class="student-info">
+                        <h3 class="student-name">Mălăeț Cristian  </h3>
+                        <p class="student-quote">"Success is not the key to happiness. Happiness is the key to success."</p>
+                        <div class="music-indicator">
+                            <i class="fas fa-music"></i>
+                            <span class="music-text">Apasă pentru a asculta melodia</span>
+                        </div>
+                    </div>
+                </div>
+
+      <div class="student-card" data-audio="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-2.mp3">
+                    <div class="student-image">
+                        <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIzMDAiIGhlaWdodD0iMzAwIiB2aWV3Qm94PSIwIDAgMzAwIDMwMCI+PHJlY3Qgd2lkdGg9IjMwMCIgaGVpZ2h0PSIzMDAiIGZpbGw9IiNlMWUxZTEiLz48Y2lyY2xlIGN4PSIxNTAiIGN5PSIxMDAiIHI9IjUwIiBmaWxsPSIjY2NjIi8+PHBhdGggZD0iTTEwMCAxNzAgTDIwMCAxNzAgTDIwMCAyMjAgTDEwMCAyMjAgTDEwMCAxNzAiIGZpbGw9IiNhY2MzZTAiLz48Y2lyY2xlIGN4PSIxMjAiIGN5PSIxNTAiIHI9IjgiIGZpbGw9IiM3ODc4NzgiLz48Y2lyY2xlIGN4PSIxODAiIGN5PSIxNTAiIHI9IjgiIGZpbGw9IiM3ODc4NzgiLz48cGF0aCBkPSJNMTIwIDE5MCBRMTUwIDIwMCAxODAgMTkwIiBzdHJva2U9IiM3ODc4NzgiIHN0cm9rZS13aWR0aD0iMiIgZmlsbD0ibm9uZSIvPjwvc3ZnPg==" alt="Elev 2">
+                    </div>
+                    <div class="student-info">
+                        <h3 class="student-name">Pană Mihaela </h3>
+                        <p class="student-quote">"Success is not the key to happiness. Happiness is the key to success."</p>
+                        <div class="music-indicator">
+                            <i class="fas fa-music"></i>
+                            <span class="music-text">Apasă pentru a asculta melodia</span>
+                        </div>
+                    </div>
+                </div>
+
+      <div class="student-card" data-audio="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-2.mp3">
+                    <div class="student-image">
+                        <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIzMDAiIGhlaWdodD0iMzAwIiB2aWV3Qm94PSIwIDAgMzAwIDMwMCI+PHJlY3Qgd2lkdGg9IjMwMCIgaGVpZ2h0PSIzMDAiIGZpbGw9IiNlMWUxZTEiLz48Y2lyY2xlIGN4PSIxNTAiIGN5PSIxMDAiIHI9IjUwIiBmaWxsPSIjY2NjIi8+PHBhdGggZD0iTTEwMCAxNzAgTDIwMCAxNzAgTDIwMCAyMjAgTDEwMCAyMjAgTDEwMCAxNzAiIGZpbGw9IiNhY2MzZTAiLz48Y2lyY2xlIGN4PSIxMjAiIGN5PSIxNTAiIHI9IjgiIGZpbGw9IiM3ODc4NzgiLz48Y2lyY2xlIGN4PSIxODAiIGN5PSIxNTAiIHI9IjgiIGZpbGw9IiM3ODc4NzgiLz48cGF0aCBkPSJNMTIwIDE5MCBRMTUwIDIwMCAxODAgMTkwIiBzdHJva2U9IiM3ODc4NzgiIHN0cm9rZS13aWR0aD0iMiIgZmlsbD0ibm9uZSIvPjwvc3ZnPg==" alt="Elev 2">
+                    </div>
+                    <div class="student-info">
+                        <h3 class="student-name">Pechianu Razvan  </h3>
+                        <p class="student-quote">"Success is not the key to happiness. Happiness is the key to success."</p>
+                        <div class="music-indicator">
+                            <i class="fas fa-music"></i>
+                            <span class="music-text">Apasă pentru a asculta melodia</span>
+                        </div>
+                    </div>
+                </div>
+
+
+
+      <div class="student-card" data-audio="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-2.mp3">
+                    <div class="student-image">
+                        <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIzMDAiIGhlaWdodD0iMzAwIiB2aWV3Qm94PSIwIDAgMzAwIDMwMCI+PHJlY3Qgd2lkdGg9IjMwMCIgaGVpZ2h0PSIzMDAiIGZpbGw9IiNlMWUxZTEiLz48Y2lyY2xlIGN4PSIxNTAiIGN5PSIxMDAiIHI9IjUwIiBmaWxsPSIjY2NjIi8+PHBhdGggZD0iTTEwMCAxNzAgTDIwMCAxNzAgTDIwMCAyMjAgTDEwMCAyMjAgTDEwMCAxNzAiIGZpbGw9IiNhY2MzZTAiLz48Y2lyY2xlIGN4PSIxMjAiIGN5PSIxNTAiIHI9IjgiIGZpbGw9IiM3ODc4NzgiLz48Y2lyY2xlIGN4PSIxODAiIGN5PSIxNTAiIHI9IjgiIGZpbGw9IiM3ODc4NzgiLz48cGF0aCBkPSJNMTIwIDE5MCBRMTUwIDIwMCAxODAgMTkwIiBzdHJva2U9IiM3ODc4NzgiIHN0cm9rZS13aWR0aD0iMiIgZmlsbD0ibm9uZSIvPjwvc3ZnPg==" alt="Elev 2">
+                    </div>
+                    <div class="student-info">
+                        <h3 class="student-name">Perdun Ioana </h3>
+                        <p class="student-quote">"Success is not the key to happiness. Happiness is the key to success."</p>
+                        <div class="music-indicator">
+                            <i class="fas fa-music"></i>
+                            <span class="music-text">Apasă pentru a asculta melodia</span>
+                        </div>
+                    </div>
+                </div>
+
+
+
+      <div class="student-card" data-audio="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-2.mp3">
+                    <div class="student-image">
+                        <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIzMDAiIGhlaWdodD0iMzAwIiB2aWV3Qm94PSIwIDAgMzAwIDMwMCI+PHJlY3Qgd2lkdGg9IjMwMCIgaGVpZ2h0PSIzMDAiIGZpbGw9IiNlMWUxZTEiLz48Y2lyY2xlIGN4PSIxNTAiIGN5PSIxMDAiIHI9IjUwIiBmaWxsPSIjY2NjIi8+PHBhdGggZD0iTTEwMCAxNzAgTDIwMCAxNzAgTDIwMCAyMjAgTDEwMCAyMjAgTDEwMCAxNzAiIGZpbGw9IiNhY2MzZTAiLz48Y2lyY2xlIGN4PSIxMjAiIGN5PSIxNTAiIHI9IjgiIGZpbGw9IiM3ODc4NzgiLz48Y2lyY2xlIGN4PSIxODAiIGN5PSIxNTAiIHI9IjgiIGZpbGw9IiM3ODc4NzgiLz48cGF0aCBkPSJNMTIwIDE5MCBRMTUwIDIwMCAxODAgMTkwIiBzdHJva2U9IiM3ODc4NzgiIHN0cm9rZS13aWR0aD0iMiIgZmlsbD0ibm9uZSIvPjwvc3ZnPg==" alt="Elev 2">
+                    </div>
+                    <div class="student-info">
+                        <h3 class="student-name">Simion Narcis </h3>
+                        <p class="student-quote">"Success is not the key to happiness. Happiness is the key to success."</p>
+                        <div class="music-indicator">
+                            <i class="fas fa-music"></i>
+                            <span class="music-text">Apasă pentru a asculta melodia</span>
+                        </div>
+                    </div>
+                </div>
+
+
+
+      <div class="student-card" data-audio="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-2.mp3">
+                    <div class="student-image">
+                        <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIzMDAiIGhlaWdodD0iMzAwIiB2aWV3Qm94PSIwIDAgMzAwIDMwMCI+PHJlY3Qgd2lkdGg9IjMwMCIgaGVpZ2h0PSIzMDAiIGZpbGw9IiNlMWUxZTEiLz48Y2lyY2xlIGN4PSIxNTAiIGN5PSIxMDAiIHI9IjUwIiBmaWxsPSIjY2NjIi8+PHBhdGggZD0iTTEwMCAxNzAgTDIwMCAxNzAgTDIwMCAyMjAgTDEwMCAyMjAgTDEwMCAxNzAiIGZpbGw9IiNhY2MzZTAiLz48Y2lyY2xlIGN4PSIxMjAiIGN5PSIxNTAiIHI9IjgiIGZpbGw9IiM3ODc4NzgiLz48Y2lyY2xlIGN4PSIxODAiIGN5PSIxNTAiIHI9IjgiIGZpbGw9IiM3ODc4NzgiLz48cGF0aCBkPSJNMTIwIDE5MCBRMTUwIDIwMCAxODAgMTkwIiBzdHJva2U9IiM3ODc4NzgiIHN0cm9rZS13aWR0aD0iMiIgZmlsbD0ibm9uZSIvPjwvc3ZnPg==" alt="Elev 2">
+                    </div>
+                    <div class="student-info">
+                        <h3 class="student-name">Stoica Daria </h3>
+                        <p class="student-quote">"Success is not the key to happiness. Happiness is the key to success."</p>
+                        <div class="music-indicator">
+                            <i class="fas fa-music"></i>
+                            <span class="music-text">Apasă pentru a asculta melodia</span>
+                        </div>
+                    </div>
+                </div>
+
+
+      <div class="student-card" data-audio="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-2.mp3">
+                    <div class="student-image">
+                        <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIzMDAiIGhlaWdodD0iMzAwIiB2aWV3Qm94PSIwIDAgMzAwIDMwMCI+PHJlY3Qgd2lkdGg9IjMwMCIgaGVpZ2h0PSIzMDAiIGZpbGw9IiNlMWUxZTEiLz48Y2lyY2xlIGN4PSIxNTAiIGN5PSIxMDAiIHI9IjUwIiBmaWxsPSIjY2NjIi8+PHBhdGggZD0iTTEwMCAxNzAgTDIwMCAxNzAgTDIwMCAyMjAgTDEwMCAyMjAgTDEwMCAxNzAiIGZpbGw9IiNhY2MzZTAiLz48Y2lyY2xlIGN4PSIxMjAiIGN5PSIxNTAiIHI9IjgiIGZpbGw9IiM3ODc4NzgiLz48Y2lyY2xlIGN4PSIxODAiIGN5PSIxNTAiIHI9IjgiIGZpbGw9IiM3ODc4NzgiLz48cGF0aCBkPSJNMTIwIDE5MCBRMTUwIDIwMCAxODAgMTkwIiBzdHJva2U9IiM3ODc4NzgiIHN0cm9rZS13aWR0aD0iMiIgZmlsbD0ibm9uZSIvPjwvc3ZnPg==" alt="Elev 2">
+                    </div>
+                    <div class="student-info">
+                        <h3 class="student-name">Ungureanu Marius </h3>
+                        <p class="student-quote">"Success is not the key to happiness. Happiness is the key to success."</p>
+                        <div class="music-indicator">
+                            <i class="fas fa-music"></i>
+                            <span class="music-text">Apasă pentru a asculta melodia</span>
+                        </div>
+                    </div>
+                </div>
+
+      <div class="student-card" data-audio="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-2.mp3">
+                    <div class="student-image">
+                        <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIzMDAiIGhlaWdodD0iMzAwIiB2aWV3Qm94PSIwIDAgMzAwIDMwMCI+PHJlY3Qgd2lkdGg9IjMwMCIgaGVpZ2h0PSIzMDAiIGZpbGw9IiNlMWUxZTEiLz48Y2lyY2xlIGN4PSIxNTAiIGN5PSIxMDAiIHI9IjUwIiBmaWxsPSIjY2NjIi8+PHBhdGggZD0iTTEwMCAxNzAgTDIwMCAxNzAgTDIwMCAyMjAgTDEwMCAyMjAgTDEwMCAxNzAiIGZpbGw9IiNhY2MzZTAiLz48Y2lyY2xlIGN4PSIxMjAiIGN5PSIxNTAiIHI9IjgiIGZpbGw9IiM3ODc4NzgiLz48Y2lyY2xlIGN4PSIxODAiIGN5PSIxNTAiIHI9IjgiIGZpbGw9IiM3ODc4NzgiLz48cGF0aCBkPSJNMTIwIDE5MCBRMTUwIDIwMCAxODAgMTkwIiBzdHJva2U9IiM3ODc4NzgiIHN0cm9rZS13aWR0aD0iMiIgZmlsbD0ibm9uZSIvPjwvc3ZnPg==" alt="Elev 2">
+                    </div>
+                    <div class="student-info">
+                        <h3 class="student-name">Ungureanu Iulian  </h3>
+                        <p class="student-quote">"Success is not the key to happiness. Happiness is the key to success."</p>
+                        <div class="music-indicator">
+                            <i class="fas fa-music"></i>
+                            <span class="music-text">Apasă pentru a asculta melodia</span>
+                        </div>
+                    </div>
+                </div>
+
+
+      <div class="student-card" data-audio="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-2.mp3">
+                    <div class="student-image">
+                        <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIzMDAiIGhlaWdodD0iMzAwIiB2aWV3Qm94PSIwIDAgMzAwIDMwMCI+PHJlY3Qgd2lkdGg9IjMwMCIgaGVpZ2h0PSIzMDAiIGZpbGw9IiNlMWUxZTEiLz48Y2lyY2xlIGN4PSIxNTAiIGN5PSIxMDAiIHI9IjUwIiBmaWxsPSIjY2NjIi8+PHBhdGggZD0iTTEwMCAxNzAgTDIwMCAxNzAgTDIwMCAyMjAgTDEwMCAyMjAgTDEwMCAxNzAiIGZpbGw9IiNhY2MzZTAiLz48Y2lyY2xlIGN4PSIxMjAiIGN5PSIxNTAiIHI9IjgiIGZpbGw9IiM3ODc4NzgiLz48Y2lyY2xlIGN4PSIxODAiIGN5PSIxNTAiIHI9IjgiIGZpbGw9IiM3ODc4NzgiLz48cGF0aCBkPSJNMTIwIDE5MCBRMTUwIDIwMCAxODAgMTkwIiBzdHJva2U9IiM3ODc4NzgiIHN0cm9rZS13aWR0aD0iMiIgZmlsbD0ibm9uZSIvPjwvc3ZnPg==" alt="Elev 2">
+                    </div>
+                    <div class="student-info">
+                        <h3 class="student-name">Vasilica Nicoleta </h3>
+                        <p class="student-quote">"Success is not the key to happiness. Happiness is the key to success."</p>
+                        <div class="music-indicator">
+                            <i class="fas fa-music"></i>
+                            <span class="music-text">Apasă pentru a asculta melodia</span>
+                        </div>
+                    </div>
+                </div>
+
+
+
+
+
+                </div>
+        </div>
+    </section>
+
+    <section class="projects" id="proiecte">
+        <div class="container">
+            <div class="section-title">
+                <h2>Proiectele Noastre</h2>
+            </div>
+            <p style="text-align: center; font-size: 1.2rem;">Aici vor fi prezentate proiectele noastre realizate în cei 4 ani de liceu.</p>
+        </div>
+    </section>
+
+    <section class="activities" id="activitati">
+        <div class="container">
+            <div class="section-title">
+                <h2>Activitățile Noastre</h2>
+            </div>
+            <p style="text-align: center; font-size: 1.2rem;">Aici vor fi prezentate activitățile noastre extracurriculare și evenimentele speciale.</p>
+        </div>
+    </section>
+
+    <section class="gallery" id="imagini">
+        <div class="container">
+            <div class="section-title">
+                <h2>Galerie Foto</h2>
+            </div>
+            <div class="gallery-grid">
+                <div class="gallery-item">
+                    <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIzMDAiIGhlaWdodD0iMjAwIiB2aWV3Qm94PSIwIDAgMzAwIDIwMCI+PHJlY3Qgd2lkdGg9IjMwMCIgaGVpZ2h0PSIyMDAiIGZpbGw9IiNlMWUxZTEiLz48dGV4dCB4PSI1MCUiIHk9IjUwJSIgZG9taW5hbnQtYmFzZWxpbmU9Im1pZGRsZSIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZm9udC1mYW1pbHk9IkFyaWFsIiBmb250LXNpemU9IjE4IiBmaWxsPSIjNzg3ODc4Ij5JbWFnaW5lIDE8L3RleHQ+PC9zdmc+" alt="Imagine 1">
+                    <div class="gallery-overlay">
+                        <i class="fas fa-search-plus"></i>
+                    </div>
+                </div>
+                </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Despre Noi</h3>
+                    <p>O clasă de liceu unită care împreună trăiește cele mai frumoase amintiri.</p>
+                </div>
+                <div class="footer-section">
+                    <h3>Link-uri Rapide</h3>
+                    <ul class="footer-links">
+                        <li><a href="#acasa">Acasă</a></li>
+                        <li><a href="#despre">Despre Noi</a></li>
+                        <li><a href="#diriginte">Diriginte</a></li>
+                        <li><a href="#elevi">Elevi</a></li>
+                        <li><a href="#proiecte">Proiecte</a></li>
+                        <li><a href="#activitati">Activități</a></li>
+                        <li><a href="#imagini">Imagini</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Contact</h3>
+                    <p>Liceul Ștefan Procopiu "</p>
+                    <p>Strada Castailor nr 3,Vaslui</p>
+                    <p>Email: clasa.noastra@liceu.ro</p>
+            
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy;  Promoția 2022-2026-Clasa a 12-a L. Toate drepturile rezervate.</p>
+        </div>
+    </footer>
+
+    <div class="scroll-to-top">
+        <i class="fas fa-arrow-up"></i>
+    </div>
+
+    <audio id="student-audio"></audio>
+
+    <script>
+        // Funcționalitate pentru scroll la secțiuni
+        document.querySelectorAll('.navigation a').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+
+        // Funcționalitate pentru header sticky
+        window.addEventListener('scroll', function() {
+            const header = document.querySelector('header');
+            header.classList.toggle('sticky', window.scrollY > 0);
+        });
+
+        // Funcționalitate pentru butonul "scroll to top"
+        const scrollToTopBtn = document.querySelector('.scroll-to-top');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 300) {
+                scrollToTopBtn.classList.add('active');
+            } else {
+                scrollToTopBtn.classList.remove('active');
+            }
+        });
+
+        scrollToTopBtn.addEventListener('click', () => {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+
+        // Funcționalitate pentru meniul mobil
+        const menuToggle = document.querySelector('.menu-toggle');
+        const navigation = document.querySelector('.navigation');
+        menuToggle.addEventListener('click', () => {
+            navigation.classList.toggle('active');
+            menuToggle.classList.toggle('active');
+        });
+
+        // Funcționalitate pentru redarea melodiilor
+        const audioPlayer = document.getElementById('student-audio');
+        const studentCards = document.querySelectorAll('.student-card');
+
+        studentCards.forEach(card => {
+            card.addEventListener('click', () => {
+                const audioSrc = card.getAttribute('data-audio');
+                const isPlaying = audioPlayer.src === audioSrc && !audioPlayer.paused;
+                
+                // Oprește orice melodie care se redă deja
+                audioPlayer.pause();
+                audioPlayer.currentTime = 0;
+
+                // Dacă melodia curentă nu se redă, pornește-o
+                if (!isPlaying) {
+                    audioPlayer.src = audioSrc;
+                    audioPlayer.play();
+                }
+            });
+        });
+    </script>
+
+</body>
+</html>
